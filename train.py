@@ -22,8 +22,8 @@ batch_size = 32
 optimizer = optim.Adam(model.parameters(), lr=lr)
 criterion = nn.BCELoss()
 # read the training csv file
-# train_csv = pd.read_csv('train.csv')
-print(df_with_images.head())
+# train_csv = pd.read_csv('attributes.csv')
+# print(df_with_images.head())
 train_csv = df_with_images
 # train dataset
 train_data = ImageDataset(

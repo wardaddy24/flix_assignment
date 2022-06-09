@@ -7,7 +7,6 @@ from dataloader import ImageDataset
 from torch.utils.data import DataLoader
 from dataset import df_with_images
 
-# initialize the computation device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #intialize the model
 model = models.model(pretrained=False, requires_grad=False).to(device)
@@ -17,7 +16,7 @@ checkpoint = torch.load('model.pth')
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 
-# train_csv = pd.read_csv('../input/movie-classifier/Multi_Label_dataset/train.csv')
+
 train_csv = df_with_images
 shirt = train_csv.columns.values[4:]
 # print(shirt)
@@ -41,10 +40,10 @@ for counter, data in enumerate(test_loader):
     outputs = model(image)
     outputs = torch.sigmoid(outputs)
     outputs = outputs.detach().cpu()
-    print(outputs)
+    # print(outputs)
     sorted_indices = np.argsort(outputs[0])
     best = sorted_indices[-3:]
-    print(best)
+    # print(best)
     string_predicted = ''
     string_actual = ''
     for i in range(len(best)):
